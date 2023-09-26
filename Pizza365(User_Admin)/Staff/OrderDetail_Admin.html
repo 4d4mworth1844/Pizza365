@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Confirmation</title>
+    <style>
+        body{
+            background-image: url('https://img.freepik.com/premium-photo/background-with-natural-ingredients-preparation-mask-skin-care-preparation-mask-from-powder_169016-13192.jpg?w=2000');
+        }
+        .heading{
+            opacity: 90%;
+        }
+    </style>
+</head>
+
+<body onload="onPageLoading()">
+    <div class="jumbotron row text-white heading" style="background-color: rgb(61, 108, 61);">
+        <div class="col-3 text-center">
+            <img src="images/pizza.png" alt="icon" width="30%">
+            <br><br>
+            <div class="form-group">
+                <button id="btn-back" class="btn btn-warning text-center text-white">Back</button>
+            </div>
+        </div>
+        <div class="col-6 text-center">
+            <h1>Order Detail</h1>
+            <h3 style="font-size:larger"><em>We bring you quality</em></h3>
+        </div>
+    </div>
+
+    <div class="container form-group" style="border-radius: 10px; background-color:beige; padding: 20px">
+        <h1 class="text-center" style="margin:auto">Check your order</h1><hr>
+        <div>
+            <label id="lb-orderid" class="col-form-label">Order ID</label>
+            <input type="text" name="orderid" id="order-id" placeholder="Order ID" class="form-control">
+        </div>
+        <div>
+            <label id="lb-combo" class="col-form-label">Combo</label>
+            <select id="select-combo" class="form-control">
+
+            </select>
+        </div>
+        <div>
+            <label id="lb-diameter" class="col-form-label">Đường kính Pizza</label>
+            <input type="text" name="diameter" id="pizza-diameter" placeholder="Đường kính" class="form-control">
+        </div>
+        <div>
+            <label id="lb-rib" class="col-form-label">Sườn</label>
+            <input type="text" name="rib" id="rib-option" placeholder="Sườn" class="form-control">
+        </div>
+        <div>
+            <label id="lb-drink" class="col-form-label">Đồ uống</label>
+            <select id="select-drink" class="form-control">
+
+            </select>
+        </div>
+        <div>
+            <label id="lb-drink-inport" class="col-form-label">Số lượng nước uống</label>
+            <input type="text" name="drink" id="drink-inport" placeholder="Số lượng nước uống" class="form-control">
+        </div>
+        <div>
+            <label id="lb-voucherid" class="col-form-label">Voucher ID</label>
+            <input type="text" name="voucherid" id="inp-voucher" placeholder="Voucher ID" class="form-control">
+        </div>
+        <div>
+            <label id="lb-pizza-type" class="col-form-label">Loại Pizza</label>
+            <input type="text" name="type" id="pizza-type" placeholder="Loại Pizza" class="form-control">
+        </div>
+        <div>
+            <label id="lb-salad" class="col-form-label">Salad</label>
+            <input type="text" name="salad" id="salad-option" placeholder="Salad" class="form-control">
+        </div>
+        <div>
+            <label id="lb-payment" class="col-form-label">Thành tiền</label>
+            <input type="text" name="payment" id="order-payment" placeholder="Thành tiền" class="form-control">
+        </div>
+        <div>
+            <label id="lb-discount" class="col-form-label">Giảm giá</label>
+            <input type="text" name="discount" id="order-discount" placeholder="Giảm giá" class="form-control">
+        </div>
+        <div>
+            <label id="lb-name" class="col-form-label">Họ và tên</label>
+            <input type="text" name="name" id="inp-name" placeholder="Họ và tên" class="form-control">
+        </div>
+        <div>
+            <label id="lb-email" class="col-form-label">Email</label>
+            <input type="text" name="email" id="inp-email" placeholder="Email" class="form-control">
+        </div>
+        <div>
+            <label id="lb-phone-number" class="col-form-label">Số điện thoại</label>
+            <input type="text" name="phone-number" id="inp-phone-number" placeholder="Số điện thoại"
+                class="form-control">
+        </div>
+        <div>
+            <label id="lb-address" class="col-form-label">Địa chỉ</label>
+            <input type="text" name="address" id="inp-address" placeholder="Địa chỉ" class="form-control">
+        </div>
+        <div>
+            <label id="lb-message" class="col-form-label">Lời nhắn</label>
+            <input type="text" name="message" id="inp-message" placeholder="Lời nhắn" class="form-control">
+        </div>
+        <div>
+            <label id="lb-status" class="col-form-label">Trạng thái đơn hàng</label>
+            <input type="text" name="status" id="order-status" placeholder="Trạng thái đơn hàng" class="form-control">
+        </div>
+        <div>
+            <label id="lb-day-created" class="col-form-label">Ngày tạo</label>
+            <input type="text" name="created" id="order-created" placeholder="Ngày tạo " class="form-control">
+        </div>
+        <div>
+            <label id="lb-day-updated" class="col-form-label">Ngày cập nhật</label>
+            <input type="text" name="updated" id="order-updated" placeholder="Ngày cập nhật" class="form-control">
+        </div>
+        <br>
+        <div>
+            <button id="btn-confirm" class="btn btn-success">Confirm</button>
+            <button id="btn-cancel" class="btn btn-info">Cancel</button>
+        </div>
+    </div>
+</body>
+<script>
+    "use script";
+    const gREQUEST_STATUS_OK = 200;
+    const gREQUEST_READY_STATUS_FINISH_AND_OK = 4;
+    const gREQUEST_CREATE_SUCCESS = 201;
+    const gBaseUrl = "http://42.115.221.44:8080/devcamp-pizza365/orders";
+
+    var gSelectCombo = document.getElementById("select-combo");
+    var gSelectPizzaType = document.getElementById("pizza-type");
+    var gSelectDrink = document.getElementById("select-drink");
+    // Input element
+    var gInpName = document.getElementById("inp-name");
+    var gInpEmail = document.getElementById("inp-email");
+    var gInpPhoneNumber = document.getElementById("inp-phone-number");
+    var gInpAddress = document.getElementById("inp-address");
+    var gInpVoucher = document.getElementById("inp-voucher");
+    var gInpMessage = document.getElementById("inp-message");
+    // 
+    var gOrderId = document.getElementById("order-id");
+    var gOrderStatus = document.getElementById("order-status");
+    var gOrderCreated = document.getElementById("order-created");
+    var gOrderUpdated = document.getElementById("order-updated");
+    var gOrderPayment = document.getElementById("order-payment");
+    var gOrderDiscount = document.getElementById("order-discount");
+
+
+    var gPizzaDiameter = document.getElementById("pizza-diameter");
+    var gRibOption = document.getElementById("rib-option");
+    var gSaladOption = document.getElementById("salad-option");
+    var gDrinkInport = document.getElementById("drink-inport");
+    var gStatus = {
+        trangThai: ""
+    }; 
+
+    document.getElementById("btn-back").addEventListener('click', function() {
+        document.location.href = "OrderList.html"; 
+    });
+
+
+    function onPageLoading() {
+        var vGetUrl = window.location.href;
+        var vAccessUrl = new URL(vGetUrl);
+        var vOrderId = vAccessUrl.searchParams.get("orderid");
+        console.log(vOrderId);
+        console.log("%cYour Order: ", "color: orange");
+        loadData(); 
+    }
+
+
+    function loadData() {
+        var vGetUrl = window.location.href;
+        var vAccessUrl = new URL(vGetUrl);
+        var vOrderId = vAccessUrl.searchParams.get("orderid");
+        var vXMLHtttpRequest = new XMLHttpRequest();
+        var vGetOrderById = gBaseUrl + '/' + vOrderId;
+        vXMLHtttpRequest.open("GET", vGetOrderById, true);
+        vXMLHtttpRequest.send();
+        vXMLHtttpRequest.onreadystatechange = function () {
+            if (this.readyState == gREQUEST_READY_STATUS_FINISH_AND_OK && this.status == gREQUEST_STATUS_OK) {
+                console.log(this.responseText);   
+                var vOrderObj = JSON.parse(this.responseText); 
+                // Create Option
+                var vDrinkOption = document.createElement("option"); 
+                vDrinkOption.value = vOrderObj.idLoaiNuocUong; 
+                vDrinkOption.text = vOrderObj.idLoaiNuocUong; 
+                gSelectDrink.add(vDrinkOption); 
+                var vComboOption = document.createElement("option");
+                vComboOption.value = vOrderObj.duongKinh; 
+                vComboOption.text = vOrderObj.kichCo;  
+                gSelectCombo.add(vComboOption); 
+                gSelectPizzaType.value = vOrderObj.loaiPizza; 
+                //
+                gOrderId.value = vOrderObj.orderId; 
+                gPizzaDiameter.value = vOrderObj.duongKinh; 
+                gOrderCreated.value = vOrderObj.ngayTao; 
+                gOrderUpdated.value = vOrderObj.ngayCapNhat; 
+                gOrderStatus.value = vOrderObj.trangThai; 
+                gOrderPayment.value = vOrderObj.thanhTien; 
+                gOrderDiscount.value = vOrderObj.giamGia; 
+
+                //
+                gInpName.value = vOrderObj.hoTen; 
+                gInpEmail.value = vOrderObj.email; 
+                gInpPhoneNumber.value = vOrderObj.soDienThoai; 
+                gInpAddress.value = vOrderObj.diaChi; 
+                gInpMessage.value = vOrderObj.loiNhan;
+                gInpVoucher.value = vOrderObj.idVourcher;  
+                //
+                gDrinkInport.value = vOrderObj.soLuongNuoc; 
+                gRibOption.value = vOrderObj.suon; 
+                gSaladOption.value = vOrderObj.salad; 
+                //
+                var vId = vOrderObj.id;
+                console.log(vId); 
+                document.getElementById("btn-confirm").addEventListener('click', function() {
+                    gStatus.trangThai = "Confirmed";
+                    var vXMLHttpRequest = new XMLHttpRequest(); 
+                    vXMLHttpRequest.open("PUT", gBaseUrl + '/' + vId, true); 
+                    vXMLHttpRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    vXMLHttpRequest.send(JSON.stringify(gStatus));
+                    vXMLHttpRequest.onreadystatechange = function() {
+                        if(this.readyState === gREQUEST_READY_STATUS_FINISH_AND_OK && this.status === gREQUEST_STATUS_OK) {
+                            if(confirm("Order Confirm?")) {
+                                console.log("%cConfirmed!", 'color: orange');
+                            }
+                        }
+                    }  
+                })
+
+                document.getElementById("btn-cancel").addEventListener('click', function() {
+                    gStatus.trangThai = "Cancelled"; 
+                    var vXMLHttpRequest = new XMLHttpRequest(); 
+                    vXMLHttpRequest.open("PUT", gBaseUrl + '/' + vId, true);
+                    vXMLHttpRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    vXMLHttpRequest.send(JSON.stringify(gStatus));
+                    vXMLHttpRequest.onreadystatechange = function() {
+                        if(this.readyState === gREQUEST_READY_STATUS_FINISH_AND_OK && this.status === gREQUEST_STATUS_OK) {
+                            if(confirm("Order Cancel?")) {
+                                console.log("%cCancelled!", 'color: red');
+                            }
+                        }
+                    } 
+                })
+            }
+        }
+    }
+
+</script>
+
+</html>

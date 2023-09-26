@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Student List</title>
+    <style>
+        #table-heading {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+
+<body onload="onPageLoading()">
+    <div class="intro">
+        <br>
+        <h1 class="text-center">Danh sách đơn hàng</h1>
+    </div>
+    <hr style="color: white;">
+    <div class="form-group container col-12">
+        <table class="table text-center table-hover table-bordered table-striped" id="order-table">
+            <thead id="table-heading">
+                <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Kích cỡ</th>
+                    <th scope="col">Loại Pizza</th>
+                    <th scope="col">Nước uống</th>
+                    <th scope="col">Thành tiền</th>
+                    <th scope="col">Họ và tên</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    "use strict";
+    const gREQUEST_STATUS_OK = 200;
+    const gREQUEST_CREATE_OK = 201; // status 201 là tạo mới thành công
+    const gREQUEST_READY_STATUS_FINISH_AND_OK = 4;
+    const gBASE_URL = "http://42.115.221.44:8080/devcamp-pizza365/orders";
+    const gEND_OF_ROW = -1;
+    const gORDER_ID = 0;
+    const gSIZE = 1;
+    const gPIZZA_TYPE = 2;
+    const gDRINK = 3;
+    const gPRICE = 4;
+    const gFULL_NAME = 5;
+    const gPHONE_NUMBER = 6;
+    const gORDER_DETAIL = 8; 
+    const gORDER_STATUS = 7;
+    
+
+
+    function onPageLoading() {
+        var vXhttp = new XMLHttpRequest();
+        vXhttp.onreadystatechange = function () {
+            if (this.readyState == gREQUEST_READY_STATUS_FINISH_AND_OK && this.status == gREQUEST_STATUS_OK) {
+                var vResponseOrderList = this.responseText;
+                var vOrderList = JSON.parse(vResponseOrderList);
+                console.log(vOrderList); 
+                var vTableBody = document.getElementById("table-body");
+                for (var bOrderIdx = 0; bOrderIdx < vOrderList.length; bOrderIdx++) {
+                    var vNewRow = vTableBody.insertRow(gEND_OF_ROW);
+
+                    var vOrderId = vNewRow.insertCell(gORDER_ID);
+                    var vSize = vNewRow.insertCell(gSIZE);
+                    var vPizzaType = vNewRow.insertCell(gPIZZA_TYPE);
+                    var vDrink = vNewRow.insertCell(gDRINK);
+                    var vPrice = vNewRow.insertCell(gPRICE);
+                    var vFullName = vNewRow.insertCell(gFULL_NAME);
+                    var vPhoneNumber = vNewRow.insertCell(gPHONE_NUMBER);
+                    var vStatus = vNewRow.insertCell(gORDER_STATUS);
+                    var vOrderDetail = vNewRow.insertCell(gORDER_DETAIL); 
+
+                    vOrderId.innerHTML = vOrderList[bOrderIdx].orderId; 
+                    var orderId = vOrderList[bOrderIdx].orderId;
+                    vSize.innerHTML = vOrderList[bOrderIdx].kichCo; 
+                    vPizzaType.innerHTML = vOrderList[bOrderIdx].loaiPizza;
+                    vDrink.innerHTML = vOrderList[bOrderIdx].idLoaiNuocUong;
+                    vPrice.innerHTML = vOrderList[bOrderIdx].thanhTien;
+                    vFullName.innerHTML = vOrderList[bOrderIdx].hoTen;
+                    vPhoneNumber.innerHTML = vOrderList[bOrderIdx].soDienThoai;
+                    vStatus.innerHTML = vOrderList[bOrderIdx].trangThai; 
+
+                    var vOrderId = ' id="' + vOrderList[bOrderIdx].id + '"';
+                    var vBtnClass = ' class="btn btn-success text-center" ';
+                    var vChangeBtn = '<button' + vOrderId + vBtnClass + '>Chi tiết</button>'
+                    vOrderDetail.innerHTML = vChangeBtn;
+                    var vButtonDetail = document.getElementById(vOrderList[bOrderIdx].id);
+                    vButtonDetail.setAttribute("data-orderid", orderId); 
+                    document.getElementById(vOrderList[bOrderIdx].id).addEventListener('click', function() {
+                        console.log(this.dataset.orderid); 
+                        document.location.href = 'OrderDetail_Admin.html?orderid=' + this.dataset.orderid; 
+                    })
+                }
+            }
+        }
+        vXhttp.open("GET", gBASE_URL, true);
+        vXhttp.send();
+    }
+</script>
+
+</html>
